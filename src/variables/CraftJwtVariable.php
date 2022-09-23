@@ -23,17 +23,33 @@ class CraftJwtVariable
 {
     // Public Methods
     // =========================================================================
+    // {% set payload = { 'deployment':'string-from-octopart', 'exp':'24hr' } %}
+    // {{ craft.craftJwt.generate($payload, 'secret-from-octopart') }}
 
     /**
      * @param null $optional
      * @return string
      */
-    public function exampleVariable($optional = null)
+    public function generate($payload, $secret)
     {
-        $result = "And away we go to the Twig template...";
-        if ($optional) {
-            $result = "I'm feeling optional today...";
-        }
-        return $result;
+        //build the headers
+        $headers = ['alg'=>'HS256','typ'=>'JWT'];
+        $headers_encoded = base64url_encode(json_encode($headers));
+
+        //build the payload
+        $payload_encoded = base64url_encode(json_encode($payload));
+
+        //build the signature
+        $signature = hash_hmac('sha256',"$headers_encoded.$payload_encoded",$secret,true);
+        $signature_encoded = base64url_encode($signature);
+
+        //build and return the token
+        $token = "$headers_encoded.$payload_encoded.$signature_encoded";
+
+        return $token;
+    }
+
+    private function base64url_encode($data) {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
     }
 }
