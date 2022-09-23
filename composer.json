@@ -1,0 +1,41 @@
+{
+    "name": "masonry/craft-jwt",
+    "description": "Generate a JWT",
+    "type": "craft-plugin",
+    "version": "0.0.1",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "craft jwt"
+    ],
+    "support": {
+        "docs": "https://github.com/builtbymasonry/craft-jwt/blob/master/README.md",
+        "issues": "https://github.com/builtbymasonry/craft-jwt/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Masonry",
+            "homepage": "builtbymasonry.com"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "masonry\\craftjwt\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Craft JWT",
+        "handle": "craft-jwt",
+        "developer": "Masonry",
+        "developerUrl": "builtbymasonry.com",
+        "documentationUrl": "https://github.com/builtbymasonry/craft-jwt/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/builtbymasonry/craft-jwt/master/CHANGELOG.md",
+        "class": "masonry\\craftjwt\\CraftJwt"
+    }
+}
