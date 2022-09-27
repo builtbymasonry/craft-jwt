@@ -34,22 +34,18 @@ class CraftJwtVariable
     {
         //build the headers
         $headers = ['alg'=>'HS256','typ'=>'JWT'];
-        $headers_encoded = base64url_encode(json_encode($headers));
+        $headers_encoded = rtrim(strtr(base64_encode(json_encode($headers))), '+/', '-_'), '=');
 
         //build the payload
-        $payload_encoded = base64url_encode(json_encode($payload));
+        $payload_encoded = rtrim(strtr(base64_encode(json_encode($payload))), '+/', '-_'), '=');
 
         //build the signature
         $signature = hash_hmac('sha256',"$headers_encoded.$payload_encoded",$secret,true);
-        $signature_encoded = base64url_encode($signature);
+        $signature_encoded = rtrim(strtr(base64_encode($signature)), '+/', '-_'), '=');
 
         //build and return the token
         $token = "$headers_encoded.$payload_encoded.$signature_encoded";
 
         return $token;
-    }
-
-    private function base64url_encode($data) {
-        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
     }
 }
