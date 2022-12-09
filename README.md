@@ -1,4 +1,4 @@
-# Craft JWT plugin for Craft CMS 3.x
+# Craft JWT plugin for Craft CMS 4.x
 
 Generate a JWT
 
