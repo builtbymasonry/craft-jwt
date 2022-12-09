@@ -1,0 +1,6 @@
+/vendor
+.DS_Store
+uploads
+node_modules
+package-lock.json
+.vscode
